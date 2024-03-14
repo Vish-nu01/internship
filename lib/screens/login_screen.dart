@@ -2,15 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Login Page',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,useMaterial3: true
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
       home: LoginPage(),
     );
   }
@@ -27,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    Map<String,dynamic> data={};
+    Map<String, dynamic> data = {};
     return Scaffold(
       appBar: AppBar(
         title: Text('Login Page'),
@@ -59,8 +56,8 @@ class _LoginPageState extends State<LoginPage> {
                 // Implement your login logic here
                 String username = _usernameController.text;
                 String password = _passwordController.text;
-                data.addAll({'username':username,'password':password});
-               var json= jsonEncode(data);
+                data.addAll({'username': username, 'password': password});
+                var json = jsonEncode(data);
                 print(json);
               },
               child: Text('Login'),
