@@ -35,14 +35,11 @@ class DoctorBookingScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8),
-            // TODO: Add your date and time picker widget here
             SizedBox(height: 16),
             // Book Appointment Button
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  // TODO: Implement booking functionality
-                  // Navigate to confirmation screen or perform booking action
                 },
                 child: Text('Book Appointment'),
               ),
