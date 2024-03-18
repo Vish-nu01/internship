@@ -1,91 +1,55 @@
 import 'package:flutter/material.dart';
 
-class RegistrationPage extends StatelessWidget {
+import '../widgets/gradient_button.dart';
+import '../widgets/login_field.dart';
+import '../widgets/social_button.dart';
+
+class Reg_Screen extends StatelessWidget {
+  const Reg_Screen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Registration'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(20.0),
-        child: RegistrationForm(),
-      ),
-    );
-  }
-}
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              const SizedBox(height:50),
+              Image.asset('assets/images/doc.png',alignment: Alignment.center,
 
-class RegistrationForm extends StatefulWidget {
-  @override
-  _RegistrationFormState createState() => _RegistrationFormState();
-}
-
-class _RegistrationFormState extends State<RegistrationForm> {
-  final _formKey = GlobalKey<FormState>();
-  String _username = '';
-  String _email = '';
-  String _password = '';
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          TextFormField(
-            decoration: InputDecoration(labelText: 'Username'),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'Please enter your username';
-              }
-              return null;
-            },
-            onSaved: (value) {
-              _username = value!;
-            },
+              ),
+              const SizedBox(height:50),
+              const Text(
+                'Sign in.',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50,
+                ),
+              ),
+              const SizedBox(height: 50),
+              const SocialButton(iconPath: 'assets/svgs/g_logo.svg', label: 'Continue with Google'),
+              const SizedBox(height: 20),
+              // const SocialButton(
+              //   iconPath: 'assets/svgs/f_logo.svg',
+              //   label: 'Continue with Facebook',
+              //   horizontalPadding: 90,
+              // ),
+              const Text(
+                'or',
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(height: 15),
+              const LoginField(hintText: 'Email'),
+              const SizedBox(height: 15),
+              const LoginField(hintText: 'Password'),
+              const SizedBox(height: 20),
+              const GradientButton(),
+            ],
           ),
-          TextFormField(
-            decoration: InputDecoration(labelText: 'Email'),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'Please enter your email';
-              }
-              // You can add email format validation if needed
-              return null;
-            },
-            onSaved: (value) {
-              _email = value!;
-            },
-          ),
-          TextFormField(
-            decoration: InputDecoration(labelText: 'Password'),
-            obscureText: true,
-            validator: (value) {
-              if (value!.isEmpty) {
-                return 'Please enter your password';
-              }
-              return null;
-            },
-            onSaved: (value) {
-              _password = value!;
-            },
-          ),
-          SizedBox(height: 20.0),
-          ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                // Call your registration API here with _username, _email, and _password
-                // For example:
-                // registerUser(_username, _email, _password);
-              }
-            },
-            child: Text('Register'),
-          ),
-        ],
+        ),
       ),
     );
   }
 }
-
