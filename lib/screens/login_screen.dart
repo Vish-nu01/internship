@@ -1,29 +1,18 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:internship/screens/home_page.dart';
+import 'package:internship/screens/reg_screen.dart';
 
-class LoginScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login Page',
-      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
-      home: LoginPage(),
-    );
-  }
-}
-
-class LoginPage extends StatefulWidget {
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
+class LoginPage extends StatelessWidget {
   TextEditingController _usernameController = TextEditingController();
+
   TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
     Map<String, dynamic> data = {};
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             SizedBox(height: 20.0),
-            ElevatedButton(
+            ElevatedButton(style: ElevatedButton.styleFrom(fixedSize: Size(300, 30)),
               onPressed: () {
                 // Implement your login logic here
                 String username = _usernameController.text;
@@ -59,9 +48,26 @@ class _LoginPageState extends State<LoginPage> {
                 data.addAll({'username': username, 'password': password});
                 var json = jsonEncode(data);
                 print(json);
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => HomePage(),
+                ));
               },
               child: Text('Login'),
             ),
+            Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Or Register here'),
+                  ),
+                  ElevatedButton(style: ElevatedButton.styleFrom(fixedSize: Size(300, 30)),onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => RegistrationPage(),));
+                  },
+                      child: Text(
+                        'Register', ))
+                ])
           ],
         ),
       ),
