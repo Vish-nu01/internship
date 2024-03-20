@@ -1,14 +1,16 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:internship/screens/home_page.dart';
 import 'package:internship/screens/reg_screen.dart';
 
-class LoginPage extends StatelessWidget {
-  TextEditingController _usernameController = TextEditingController();
+import 'main_page.dart';
 
-  TextEditingController _passwordController = TextEditingController();
+class LoginPage extends StatelessWidget {
+  final TextEditingController _usernameController = TextEditingController();
+
+  final TextEditingController _passwordController = TextEditingController();
+
+  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +51,7 @@ class LoginPage extends StatelessWidget {
                 var json = jsonEncode(data);
                 print(json);
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => HomePage(),
+                  builder: (context) => const MainPage(),
                 ));
               },
               child: Text('Login'),

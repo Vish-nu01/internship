@@ -1,136 +1,120 @@
+
 import 'package:flutter/material.dart';
 import '../model/hospital_model.dart';
-import 'doctor_booking_screen.dart'; // Make sure to import your Hospital model
+import 'doctor_booking_screen.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   final List<Hospital> dummyHospitals = [
     Hospital(
       name: 'City Hospital',
       location: '123 Main Street, City',
-      specialization: 'General Medicine',
+      specializations: ['General Medicine','ENT'],
     ),
     Hospital(
       name: 'Sunset Hospital',
       location: '456 Elm Street, Town',
-      specialization: 'Pediatrics',
+      specializations: ['Pediatrics'],
     ),
     Hospital(
       name: 'Mountain View Hospital',
       location: '789 Oak Avenue, Mountain View',
-      specialization: 'Orthopedics',
+      specializations: ['Orthopedics'],
     ),
     // Add more dummy hospital data as needed
   ];
+
+   HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('XXXXXXXX'),
+        title: Text('XXXXXX'),
         centerTitle: true,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.grey[300],
-            ),
-            padding: EdgeInsets.all(10),
-            height: MediaQuery.of(context).size.height * 0.05,
-            width: MediaQuery.of(context).size.width,
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Welcome XXXXX ,',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
+            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+            color: Colors.grey[300],
+            child: Text(
+              'Welcome XXXXX,',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
+              textAlign: TextAlign.center,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(16.0),
             child: Text(
               'Book Appointments',
               style: TextStyle(
                 fontSize: 18,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.bold,
                 fontStyle: FontStyle.italic,
               ),
             ),
           ),
           Expanded(
             child: GridView.builder(
+              padding: EdgeInsets.symmetric(horizontal: 16),
               itemCount: dummyHospitals.length,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: 5.0,
-                crossAxisSpacing: 5.0,
-                childAspectRatio: 0.8,
+                mainAxisSpacing: 16.0,
+                crossAxisSpacing: 16.0,
+                childAspectRatio: 0.65,
               ),
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => DoctorBookingScreen(),
-                          ));
-                        },
-                        child: Card(
-                          elevation: 3,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(8),
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              height: MediaQuery.of(context).size.height * 0.21,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image(
-                                    image: NetworkImage(
-                                        'https://i.pinimg.com/236x/07/b5/ff/07b5ff2a8a2ab5dd7d29f31d5d73835e.jpg'),
-                                    height: 130,
-                                    width: 130,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    dummyHospitals[index].name,
-                                    style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Specialization: ${dummyHospitals[index].specialization}',
-                                    style: TextStyle(
-                                      overflow: TextOverflow.ellipsis,
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => DoctorBookingScreen(),
+                    ));
+                  },
+                  child: Card(
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.network(
+                          'https://i.pinimg.com/236x/07/b5/ff/07b5ff2a8a2ab5dd7d29f31d5d73835e.jpg',
+                          height: 130,
+                          width: 130,
+                          fit: BoxFit.cover,
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 8),
+                        Text(
+                          dummyHospitals[index].name,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(height: 4),
+                        Column(
+                          children: [
+                            Text(
+                              'Specialization: ',
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,fontWeight: FontWeight.w500
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            Text('${dummyHospitals[index].specializations}',maxLines: 2,)
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -138,7 +122,139 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-
     );
   }
 }
+
+//
+// import 'package:flutter/material.dart';
+// import '../model/hospital_model.dart';
+// import 'doctor_booking_screen.dart';
+//
+// class HomePage extends StatelessWidget {
+//   final List<Hospital> dummyHospitals = [
+//     Hospital(
+//       name: 'City Hospital',
+//       location: '123 Main Street, City',
+//       specializations: ['General Medicine', 'Cardiology'],
+//     ),
+//     Hospital(
+//       name: 'Sunset Hospital',
+//       location: '456 Elm Street, Town',
+//       specializations: ['Pediatrics', 'Orthopedics'],
+//     ),
+//     Hospital(
+//       name: 'Mountain View Hospital',
+//       location: '789 Oak Avenue, Mountain View',
+//       specializations: ['Orthopedics', 'Neurology'],
+//     ),
+//     // Add more dummy hospital data as needed
+//   ];
+//
+//   HomePage({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(elevation: 10,
+//         title: const Text('Appointments'),
+//         centerTitle: true,
+//       ),
+//       body: Column(
+//         crossAxisAlignment: CrossAxisAlignment.stretch,
+//         children: [
+//           Container(
+//             padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+//             color: Colors.grey[300],
+//             child: Text(
+//               'Welcome XXXXX,',
+//               style: TextStyle(
+//                 fontSize: 24,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//               textAlign: TextAlign.center,
+//             ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.all(16.0),
+//             child: Text(
+//               'Book Appointments',
+//               style: TextStyle(
+//                 fontSize: 18,
+//                 fontWeight: FontWeight.bold,
+//                 fontStyle: FontStyle.italic,
+//               ),
+//             ),
+//           ),
+//           Expanded(
+//             child: GridView.builder(
+//               padding: EdgeInsets.symmetric(horizontal: 16),
+//               itemCount: dummyHospitals.length,
+//               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//                 crossAxisCount: 2,
+//                 mainAxisSpacing: 16.0,
+//                 crossAxisSpacing: 16.0,
+//                 childAspectRatio: 0.6,
+//               ),
+//               itemBuilder: (context, index) {
+//                 return GestureDetector(
+//                   onTap: () {
+//                     Navigator.of(context).push(MaterialPageRoute(
+//                       builder: (context) => DoctorBookingScreen(),
+//                     ));
+//                   },
+//                   child: Card(
+//                     elevation: 3,
+//                     shape: RoundedRectangleBorder(
+//                       borderRadius: BorderRadius.circular(10),
+//                     ),
+//                     child: Column(
+//                       mainAxisAlignment: MainAxisAlignment.center,
+//                       children: [
+//                         Image.network(
+//                           'https://i.pinimg.com/236x/07/b5/ff/07b5ff2a8a2ab5dd7d29f31d5d73835e.jpg',
+//                           height: 130,
+//                           width: 130,
+//                           fit: BoxFit.cover,
+//                         ),
+//                         SizedBox(height: 8),
+//                         Text(
+//                           dummyHospitals[index].name,
+//                           style: TextStyle(
+//                             fontSize: 16,
+//                             fontWeight: FontWeight.bold,
+//                           ),
+//                           textAlign: TextAlign.center,
+//                           maxLines: 2,
+//                           overflow: TextOverflow.ellipsis,
+//                         ),
+//                         SizedBox(height: 4),
+//                         Wrap(
+//                           alignment: WrapAlignment.center,
+//                           spacing: 4,
+//                           children: dummyHospitals[index].specializations
+//                               .map(
+//                                 (specializations) => Chip(
+//                               label: Text(
+//                                 specializations,
+//                                 style: TextStyle(
+//                                   color: Colors.white,
+//                                 ),
+//                               ),
+//                               backgroundColor: Colors.deepPurpleAccent,
+//                             ),
+//                           )
+//                               .toList(),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 );
+//               },
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }

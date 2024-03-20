@@ -5,15 +5,14 @@ class AppointmentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp(debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
+        appBar: AppBar(elevation: 10,
           title: Text('Appointments'),
         ),
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            Container(width: double.infinity,color: Colors.grey,height: 40,
               child: Text(
                 'Pending Appointments & Medications',
                 style: TextStyle(fontSize: 22),

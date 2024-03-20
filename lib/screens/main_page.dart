@@ -14,7 +14,7 @@ class MainPage extends StatefulWidget {
 }
 
 int index = 0;
-List<Widget> screens = [const HomePage(), const AppointmentScreen(), const SettingsPage()];
+List<Widget> screens = [ HomePage(), const AppointmentScreen(), const SettingsPage()];
 
 class _MainPageState extends State<MainPage> {
   @override
