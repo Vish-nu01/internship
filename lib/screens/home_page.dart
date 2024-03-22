@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../model/hospital_model.dart';
 import 'doctor_booking_screen.dart';
@@ -6,49 +5,65 @@ import 'doctor_booking_screen.dart';
 class HomePage extends StatelessWidget {
   final List<Hospital> dummyHospitals = [
     Hospital(
-      name: 'City Hospital',
-      location: '123 Main Street, City',
-      specializations: ['General Medicine','ENT'],
+      hospitalId: 100,
+      hospitalName: 'City Hospital',
+      address: '123 Main Street, City',
+      phone: '9876543219',
+      contactInfo: 'cityhospital@gmail.com',
     ),
     Hospital(
-      name: 'Sunset Hospital',
-      location: '456 Elm Street, Town',
-      specializations: ['Pediatrics'],
-    ),
+        hospitalId: 101,
+        hospitalName: 'Sunset Hospital',
+        address: '456 Elm Street, Town',
+        phone: '3214567897',
+        contactInfo: 'sunsethospital@gmail.com'),
     Hospital(
-      name: 'Mountain View Hospital',
-      location: '789 Oak Avenue, Mountain View',
-      specializations: ['Orthopedics'],
-    ),
+        hospitalId: 102,
+        hospitalName: 'Mountain View Hospital',
+        address: '789 Oak Avenue, Mountain View',
+        phone: '7894561237',
+        contactInfo: "mountainviewhospital@gmail.com"),
     // Add more dummy hospital data as needed
   ];
 
-   HomePage({super.key});
+  HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('XXXXXX'),
+        title: const Text('XXXXXX'),
         centerTitle: true,
+        backgroundColor: Colors.deepPurpleAccent.shade100,
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+            height: 60,
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
             color: Colors.grey[300],
-            child: Text(
-              'Welcome XXXXX,',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Welcome XXXXX,',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.start,
+                ),
+                Icon(
+                  Icons.location_on_outlined,
+                  size: 28,
+                )
+              ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
+          const Padding(
+            padding: EdgeInsets.all(16.0),
             child: Text(
               'Book Appointments',
               style: TextStyle(
@@ -60,9 +75,9 @@ class HomePage extends StatelessWidget {
           ),
           Expanded(
             child: GridView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               itemCount: dummyHospitals.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 16.0,
                 crossAxisSpacing: 16.0,
@@ -72,7 +87,7 @@ class HomePage extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => DoctorBookingScreen(),
+                      builder: (context) => const DoctorBookingScreen(),
                     ));
                   },
                   child: Card(
@@ -81,6 +96,7 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.network(
@@ -89,10 +105,10 @@ class HomePage extends StatelessWidget {
                           width: 130,
                           fit: BoxFit.cover,
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         Text(
-                          dummyHospitals[index].name,
-                          style: TextStyle(
+                          dummyHospitals[index].hospitalName,
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -100,17 +116,25 @@ class HomePage extends StatelessWidget {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        SizedBox(height: 4),
+                        const SizedBox(height: 4),
                         Column(
                           children: [
-                            Text(
+                            const Text(
                               'Specialization: ',
                               style: TextStyle(
-                                fontStyle: FontStyle.italic,fontWeight: FontWeight.w500
-                              ),
+                                  fontStyle: FontStyle.italic,
+                                  fontWeight: FontWeight.w500),
                               textAlign: TextAlign.center,
                             ),
-                            Text('${dummyHospitals[index].specializations}',maxLines: 2,)
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                dummyHospitals[index].address,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                              ),
+                            )
                           ],
                         ),
                       ],
@@ -125,136 +149,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-//
-// import 'package:flutter/material.dart';
-// import '../model/hospital_model.dart';
-// import 'doctor_booking_screen.dart';
-//
-// class HomePage extends StatelessWidget {
-//   final List<Hospital> dummyHospitals = [
-//     Hospital(
-//       name: 'City Hospital',
-//       location: '123 Main Street, City',
-//       specializations: ['General Medicine', 'Cardiology'],
-//     ),
-//     Hospital(
-//       name: 'Sunset Hospital',
-//       location: '456 Elm Street, Town',
-//       specializations: ['Pediatrics', 'Orthopedics'],
-//     ),
-//     Hospital(
-//       name: 'Mountain View Hospital',
-//       location: '789 Oak Avenue, Mountain View',
-//       specializations: ['Orthopedics', 'Neurology'],
-//     ),
-//     // Add more dummy hospital data as needed
-//   ];
-//
-//   HomePage({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(elevation: 10,
-//         title: const Text('Appointments'),
-//         centerTitle: true,
-//       ),
-//       body: Column(
-//         crossAxisAlignment: CrossAxisAlignment.stretch,
-//         children: [
-//           Container(
-//             padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-//             color: Colors.grey[300],
-//             child: Text(
-//               'Welcome XXXXX,',
-//               style: TextStyle(
-//                 fontSize: 24,
-//                 fontWeight: FontWeight.bold,
-//               ),
-//               textAlign: TextAlign.center,
-//             ),
-//           ),
-//           Padding(
-//             padding: const EdgeInsets.all(16.0),
-//             child: Text(
-//               'Book Appointments',
-//               style: TextStyle(
-//                 fontSize: 18,
-//                 fontWeight: FontWeight.bold,
-//                 fontStyle: FontStyle.italic,
-//               ),
-//             ),
-//           ),
-//           Expanded(
-//             child: GridView.builder(
-//               padding: EdgeInsets.symmetric(horizontal: 16),
-//               itemCount: dummyHospitals.length,
-//               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//                 crossAxisCount: 2,
-//                 mainAxisSpacing: 16.0,
-//                 crossAxisSpacing: 16.0,
-//                 childAspectRatio: 0.6,
-//               ),
-//               itemBuilder: (context, index) {
-//                 return GestureDetector(
-//                   onTap: () {
-//                     Navigator.of(context).push(MaterialPageRoute(
-//                       builder: (context) => DoctorBookingScreen(),
-//                     ));
-//                   },
-//                   child: Card(
-//                     elevation: 3,
-//                     shape: RoundedRectangleBorder(
-//                       borderRadius: BorderRadius.circular(10),
-//                     ),
-//                     child: Column(
-//                       mainAxisAlignment: MainAxisAlignment.center,
-//                       children: [
-//                         Image.network(
-//                           'https://i.pinimg.com/236x/07/b5/ff/07b5ff2a8a2ab5dd7d29f31d5d73835e.jpg',
-//                           height: 130,
-//                           width: 130,
-//                           fit: BoxFit.cover,
-//                         ),
-//                         SizedBox(height: 8),
-//                         Text(
-//                           dummyHospitals[index].name,
-//                           style: TextStyle(
-//                             fontSize: 16,
-//                             fontWeight: FontWeight.bold,
-//                           ),
-//                           textAlign: TextAlign.center,
-//                           maxLines: 2,
-//                           overflow: TextOverflow.ellipsis,
-//                         ),
-//                         SizedBox(height: 4),
-//                         Wrap(
-//                           alignment: WrapAlignment.center,
-//                           spacing: 4,
-//                           children: dummyHospitals[index].specializations
-//                               .map(
-//                                 (specializations) => Chip(
-//                               label: Text(
-//                                 specializations,
-//                                 style: TextStyle(
-//                                   color: Colors.white,
-//                                 ),
-//                               ),
-//                               backgroundColor: Colors.deepPurpleAccent,
-//                             ),
-//                           )
-//                               .toList(),
-//                         ),
-//                       ],
-//                     ),
-//                   ),
-//                 );
-//               },
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

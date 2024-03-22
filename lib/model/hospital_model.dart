@@ -1,7 +1,14 @@
 class Hospital {
-  final String name;
-  final String location;
-  final List<String> specializations;
+  final int hospitalId;
+  final String hospitalName;
+  final String address;
+  final String phone;
+  final String contactInfo;
 
-  Hospital({required this.name, required this.location, required this.specializations});
+  Hospital(
+      {required this.hospitalId,
+      required this.address,
+      required this.phone,
+      required this.contactInfo,
+      required this.hospitalName,});
 }

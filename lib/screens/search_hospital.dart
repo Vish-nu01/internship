@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 
 class HospitalSearchPage extends StatelessWidget {
+  const HospitalSearchPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search Hospitals'),
+        title: const Text('Search Hospitals'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Search Input Field
             TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Search by name, location, or specialization',
                 border: OutlineInputBorder(),
               ),
@@ -23,16 +25,16 @@ class HospitalSearchPage extends StatelessWidget {
                 // Update search results based on user input
               },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             // Search Button
             ElevatedButton(
               onPressed: () {
                 // TODO: Implement search functionality
                 // Perform search based on user input
               },
-              child: Text('Search'),
+              child: const Text('Search'),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             // TODO: Display search results here
             // You can use a ListView to display search results
           ],

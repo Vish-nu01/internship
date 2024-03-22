@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -6,62 +5,72 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Settings'),
+          title: const Text(
+            'Settings',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          backgroundColor: Colors.deepPurpleAccent.shade100,
         ),
         body: Column(
           children: [
             Expanded(
               child: ListView(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 children: [
-                  ListTile(
-                    title: Text('Account'),
-                    leading: Icon(Icons.account_circle),
-                    onTap: () {
-                      // Navigate to account settings screen
-                    },
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text('Notifications'),
-                    leading: Icon(Icons.notifications),
-                    onTap: () {
-                      // Navigate to notifications settings screen
-                    },
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text('Privacy'),
-                    leading: Icon(Icons.lock),
-                    onTap: () {
-                      // Navigate to privacy settings screen
-                    },
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text('Help & Feedback'),
-                    leading: Icon(Icons.help),
-                    onTap: () {
-                      // Navigate to help & feedback screen
-                    },
-                  ),
-                  Divider(),
-                  ListTile(
-                    title: Text('About'),
-                    leading: Icon(Icons.info),
-                    onTap: () {
-                      // Navigate to about screen
-                    },
-                  ),
+                  buildListTile('Account', Icons.account_circle, () {
+                    // Navigate to account settings screen
+                  }),
+                  buildListTile('Notifications', Icons.notifications, () {
+                    // Navigate to notifications settings screen
+                  }),
+                  buildListTile('Privacy', Icons.lock, () {
+                    // Navigate to privacy settings screen
+                  }),
+                  buildListTile('Help & Feedback', Icons.help, () {
+                    // Navigate to help & feedback screen
+                  }),
+                  buildListTile('About', Icons.info, () {
+                    // Navigate to about screen
+                  }),
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget buildListTile(String title, IconData icon, Function() onTap) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          leading: Icon(
+            icon,
+            size: 32.0,
+            color: Colors.deepPurpleAccent,
+          ),
+          onTap: onTap,
+        ),
+        Divider(
+          color: Colors.grey[400],
+          height: 0,
+          thickness: 1,
+        ),
+      ],
     );
   }
 }
