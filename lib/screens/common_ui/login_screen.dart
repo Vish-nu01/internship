@@ -1,9 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:internship/screens/reg_screen.dart';
-
-import 'main_page.dart';
+import 'package:internship/screens/user_ui/reg_screen.dart';
+import '../user_ui/main_page.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController _usernameController = TextEditingController();
@@ -51,7 +50,7 @@ class LoginPage extends StatelessWidget {
                 jsonEncode(data);
                 //print(json);
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const MainPage(),
+                  builder: (context) => MainPage(),
                 ));
               },
               child: const Text('Login'),

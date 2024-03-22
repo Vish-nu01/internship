@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:internship/screens/main_page.dart';
+import 'main_page.dart';
 
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});
@@ -100,7 +100,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 // Call your registration API here with _username, _email, and _password
                 // registerUser(_username, _email, _password);
               }
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const MainPage(),));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => MainPage(),));
             },
             child: const Text('Register'),
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:internship/screens/spalsh_screen.dart';
+import 'package:internship/screens/common_ui/spalsh_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurpleAccent),
         useMaterial3: true,
       ),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

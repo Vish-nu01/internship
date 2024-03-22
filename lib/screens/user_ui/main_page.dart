@@ -1,15 +1,20 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:internship/screens/home_page.dart';
-
+import 'package:internship/screens/common_ui/settings_page.dart';
 import 'appointment_screen.dart';
-import 'settings_page.dart';
+import 'home_page.dart';
 
 ValueNotifier<int> indexChangeNotifier = ValueNotifier(0);
 
 class MainPage extends StatelessWidget {
-  const MainPage({super.key});
+  MainPage({super.key});
+
+  final List<Widget> screens = [
+    HomePage(),
+    const AppointmentScreen(),
+    const SettingsPage()
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +46,3 @@ class MainPage extends StatelessWidget {
     );
   }
 }
-
-//int index = 0;
-List<Widget> screens = [
-  HomePage(),
-  const AppointmentScreen(),
-  const SettingsPage()
-];

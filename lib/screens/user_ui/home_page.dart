@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/hospital_model.dart';
+import '../../model/hospital_model.dart';
 import 'doctor_booking_screen.dart';
 
 class HomePage extends StatelessWidget {
